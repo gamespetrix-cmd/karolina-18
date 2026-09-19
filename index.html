@@ -135,21 +135,20 @@ footer{text-align:center;color:#555;font-size:9px;padding-bottom:35px;letter-spa
   <section class="section">
     <div class="container reveal">
       <h2 class="section-title">Nasza muzyka</h2>
-      <p class="section-sub">Tutaj możesz dodać 5 piosenek. Nazwy zmienisz w pliku <b>script.js</b>.</p>
       <div class="music">
         <div class="now">
           <div class="album">♫</div>
           <div class="track"><b>Zimowy Gdańsk</b><small>Cheatz · 5 utworów</small></div>
         </div>
         <div style="margin-top:18px;display:grid;gap:8px">
-          <a class="song" href="https://music.amazon.com/albums/B0GMKFDQQ9" target="_blank" rel="noopener"><span>01</span><b>Cały ja</b><small>2:14 · oficjalne źródło</small></a>
-          <a class="song" href="https://music.amazon.com/tracks/B0GMJY5K6C" target="_blank" rel="noopener"><span>02</span><b>Jeszcze raz</b><small>2:12 · oficjalne źródło</small></a>
-          <a class="song" href="https://music.amazon.com/tracks/B0GMJY1697" target="_blank" rel="noopener"><span>03</span><b>Nieskończoność</b><small>2:10 · oficjalne źródło</small></a>
-          <a class="song" href="https://music.amazon.com/tracks/B0GMKD34NQ" target="_blank" rel="noopener"><span>04</span><b>Ten stan</b><small>2:11 · oficjalne źródło</small></a>
-          <a class="song" href="https://music.amazon.co.uk/tracks/B0GMKDFJ2J" target="_blank" rel="noopener"><span>05</span><b>Wrażenie</b><small>2:40 · Cheatz & Sztoss</small></a>
+          <button class="song" type="button" onclick="playLocal(0)"><span>01</span><b>Cały ja</b><small>▶</small></button>
+          <button class="song" type="button" onclick="playLocal(1)"><span>02</span><b>Jeszcze raz</b><small>▶</small></button>
+          <button class="song" type="button" onclick="playLocal(2)"><span>03</span><b>Nieskończoność</b><small>▶</small></button>
+          <button class="song" type="button" onclick="playLocal(3)"><span>04</span><b>Ten stan</b><small>▶</small></button>
+          <button class="song" type="button" onclick="playLocal(4)"><span>05</span><b>Wrażenie</b><small>▶</small></button>
         </div>
-        <a class="open-btn" style="display:block;text-align:center;text-decoration:none;margin-top:18px" href="https://music.amazon.com/albums/B0GMKFDQQ9" target="_blank" rel="noopener">▶ Otwórz cały album</a>
-        <p class="hint">Album „Zimowy Gdańsk” ma 5 utworów. Strona nie kopiuje ani nie przechowuje plików audio — przyciski prowadzą do oficjalnego źródła.</p>
+        <audio id="bgAudio" controls preload="metadata" style="width:100%;margin-top:18px"></audio>
+        
       </div>
     </div>
   </section>
@@ -172,5 +171,8 @@ footer{text-align:center;color:#555;font-size:9px;padding-bottom:35px;letter-spa
 </main>
 
 <script src="script.js"></script>
-</body>
+<script>
+const localTracks=["audio/caly-ja.mp3","audio/jeszcze-raz.mp3","audio/nieskonczonosc.mp3","audio/ten-stan.mp3","audio/wrazenie.mp3"];
+function playLocal(i){const a=document.getElementById("bgAudio");a.src=localTracks[i];a.play().catch(()=>{});}
+</script></body>
 </html>
