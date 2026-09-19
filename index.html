@@ -28,6 +28,7 @@ button{font:inherit}
 .open-btn:active{transform:scale(.97)}
 .heart{font-size:34px;margin-top:28px;animation:beat 1.3s infinite}
 @keyframes beat{50%{transform:scale(1.18)}}
+
 main{display:none}
 main.show{display:block}
 .container{width:min(100%,560px);margin:auto;padding:0 18px}
@@ -60,6 +61,7 @@ main.show{display:block}
 .controls{display:flex;gap:10px;margin-top:16px}
 .controls button{flex:1;border:1px solid rgba(255,255,255,.09);background:#151518;color:#eee;border-radius:12px;padding:11px;cursor:pointer}
 .controls .play{background:var(--red);border-color:var(--red)}
+
 .song{display:grid;grid-template-columns:32px 1fr auto;align-items:center;gap:10px;text-decoration:none;color:#eee;background:#151518;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:11px 12px}
 .song span{color:var(--red2);font-size:10px}
 .song b{font-size:12px}
@@ -85,61 +87,92 @@ footer{text-align:center;color:#555;font-size:9px;padding-bottom:35px;letter-spa
     <div class="heart">♥</div>
   </div>
 </section>
+
 <main id="main">
-  <section class="hero"><div>
-    <div class="kicker">8 marca 2026 — nasza historia</div>
-    <h1>Dla <span>Karoliny</span></h1>
-    <div class="date">OD 08.03.2026</div>
-    <div class="since"></div>
-    <div class="scroll">przewiń</div>
-  </div></section>
-  <section class="section"><div class="container reveal">
-    <h2 class="section-title">Razem</h2>
-    <p class="section-sub">Od dnia, w którym zaczęła się nasza historia.</p>
-    <div class="divider"></div>
-    <div class="counter">
-      <div class="box"><strong id="days">0</strong><span>dni</span></div>
-      <div class="box"><strong id="hours">0</strong><span>godzin</span></div>
-      <div class="box"><strong id="minutes">0</strong><span>minut</span></div>
-      <div class="box"><strong id="seconds">0</strong><span>sekund</span></div>
+  <section class="hero">
+    <div>
+      <div class="kicker">8 marca 2026 — nasza historia</div>
+      <h1>Dla <span>Karoliny</span></h1>
+      <div class="date">OD 08.03.2026</div>
+      <div class="since"></div>
+      <div class="scroll">przewiń</div>
     </div>
-  </div></section>
-  <section class="section"><div class="container reveal">
-    <h2 class="section-title">Nasze chwile</h2>
-    <p class="section-sub">10 małych wspomnień, które chciałem zachować w jednym miejscu.</p>
-    <div class="gallery">
-      <figure class="photo"><img src="images/01.jpg" alt="Nasze zdjęcie 1"></figure>
-      <figure class="photo"><img src="images/02.jpg" alt="Nasze zdjęcie 2"></figure>
-      <figure class="photo"><img src="images/03.jpg" alt="Nasze zdjęcie 3"></figure>
-      <figure class="photo"><img src="images/04.jpg" alt="Nasze zdjęcie 4"></figure>
-      <figure class="photo"><img src="images/05.jpg" alt="Nasze zdjęcie 5"></figure>
-      <figure class="photo"><img src="images/06.jpg" alt="Nasze zdjęcie 6"></figure>
-      <figure class="photo"><img src="images/07.jpg" alt="Nasze zdjęcie 7"></figure>
-      <figure class="photo"><img src="images/08.jpg" alt="Nasze zdjęcie 8"></figure>
-      <figure class="photo"><img src="images/09.jpg" alt="Nasze zdjęcie 9"></figure>
-      <figure class="photo"><img src="images/10.jpg" alt="Nasze zdjęcie 10"></figure>
-    </div>
-  </div></section>
-  <section class="section"><div class="container reveal">
-    <h2 class="section-title">Nasza muzyka</h2>
-    <div class="music">
-      <div class="now"><div class="album">♫</div><div class="track"><b>Zimowy Gdańsk</b><small>Cheatz · 5 utworów</small></div></div>
-      <div style="margin-top:18px;display:grid;gap:8px">
-        <button class="song" type="button" onclick="playLocal(0)"><span>01</span><b>Cały ja</b><small>▶</small></button>
-        <button class="song" type="button" onclick="playLocal(1)"><span>02</span><b>Jeszcze raz</b><small>▶</small></button>
-        <button class="song" type="button" onclick="playLocal(2)"><span>03</span><b>Nieskończoność</b><small>▶</small></button>
-        <button class="song" type="button" onclick="playLocal(3)"><span>04</span><b>Ten stan</b><small>▶</small></button>
-        <button class="song" type="button" onclick="playLocal(4)"><span>05</span><b>Wrażenie</b><small>▶</small></button>
+  </section>
+
+  <section class="section">
+    <div class="container reveal">
+      <h2 class="section-title">Razem</h2>
+      <p class="section-sub">Od dnia, w którym zaczęła się nasza historia.</p>
+      <div class="divider"></div>
+      <div class="counter">
+        <div class="box"><strong id="days">0</strong><span>dni</span></div>
+        <div class="box"><strong id="hours">0</strong><span>godzin</span></div>
+        <div class="box"><strong id="minutes">0</strong><span>minut</span></div>
+        <div class="box"><strong id="seconds">0</strong><span>sekund</span></div>
       </div>
-      <audio id="bgAudio" controls preload="metadata" style="width:100%;margin-top:18px"></audio>
     </div>
-  </div></section>
-  <section class="section"><div class="container reveal">
-    <h2 class="section-title">Dla Ciebie</h2>
-    <div class="note"><p>„Tutaj wpiszę później coś od siebie dla Ciebie...”</p></div>
-  </div></section>
-  <section class="final reveal"><div class="big-heart">♥</div><h2>Wszystkiego najlepszego,<br>Myszka</h2><p>18 lat to dopiero początek. ❤️</p></section>
+  </section>
+
+  <section class="section">
+    <div class="container reveal">
+      <h2 class="section-title">Nasze chwile</h2>
+      <p class="section-sub">10 małych wspomnień, które chciałem zachować w jednym miejscu.</p>
+      <div class="gallery">
+        <figure class="photo"><img src="images/01.jpg" alt="Nasze zdjęcie 1"></figure>
+        <figure class="photo"><img src="images/02.jpg" alt="Nasze zdjęcie 2"></figure>
+        <figure class="photo"><img src="images/03.jpg" alt="Nasze zdjęcie 3"></figure>
+        <figure class="photo"><img src="images/04.jpg" alt="Nasze zdjęcie 4"></figure>
+        <figure class="photo"><img src="images/05.jpg" alt="Nasze zdjęcie 5"></figure>
+        <figure class="photo"><img src="images/06.jpg" alt="Nasze zdjęcie 6"></figure>
+        <figure class="photo"><img src="images/07.jpg" alt="Nasze zdjęcie 7"></figure>
+        <figure class="photo"><img src="images/08.jpg" alt="Nasze zdjęcie 8"></figure>
+        <figure class="photo"><img src="images/09.jpg" alt="Nasze zdjęcie 9"></figure>
+        <figure class="photo"><img src="images/10.jpg" alt="Nasze zdjęcie 10"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container reveal">
+      <h2 class="section-title">Nasza muzyka</h2>
+      <div class="music">
+        <div class="now">
+          <div class="album">♫</div>
+          <div class="track"><b>Zimowy Gdańsk</b><small>Cheatz · 5 utworów</small></div>
+        </div>
+        <div style="margin-top:18px;display:grid;gap:8px">
+          <button class="song" type="button" onclick="playLocal(0)"><span>01</span><b>Cały ja</b><small>▶</small></button>
+          <button class="song" type="button" onclick="playLocal(1)"><span>02</span><b>Jeszcze raz</b><small>▶</small></button>
+          <button class="song" type="button" onclick="playLocal(2)"><span>03</span><b>Nieskończoność</b><small>▶</small></button>
+          <button class="song" type="button" onclick="playLocal(3)"><span>04</span><b>Ten stan</b><small>▶</small></button>
+          <button class="song" type="button" onclick="playLocal(4)"><span>05</span><b>Wrażenie</b><small>▶</small></button>
+        </div>
+        <audio id="bgAudio" controls preload="metadata" style="width:100%;margin-top:18px"></audio>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container reveal">
+      <h2 class="section-title">Dla Ciebie</h2>
+      <div class="note">
+        <p>„Tutaj wpiszę później coś od siebie dla Ciebie...”</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final reveal">
+    <div class="big-heart">♥</div>
+    <h2>Wszystkiego najlepszego,<br>Myszka</h2>
+    <p>18 lat to dopiero początek. ❤️</p>
+  </section>
+  
 </main>
+
 <script src="script.js"></script>
-</body>
+<script>
+const localTracks=["audio/caly-ja.mp3","audio/jeszcze-raz.mp3","audio/nieskonczonosc.mp3","audio/ten-stan.mp3","audio/wrazenie.mp3"];
+function playLocal(i){const a=document.getElementById("bgAudio");a.src=localTracks[i];a.play().catch(()=>{});}
+</script></body>
 </html>
