@@ -1,45 +1,62 @@
+const startDate=new Date("2026-03-08T00:00:00");
+const intro=document.getElementById("intro"),main=document.getElementById("main"),open=document.getElementById("open");
+
+open.addEventListener("click",()=>{
+  intro.style.display="none";
+  main.classList.add("show");
+  document.body.classList.remove("lock");
+  window.scrollTo(0,0);
+});
+
+function updateCounter(){
+  let d=Math.max(0,Date.now()-startDate.getTime()),s=Math.floor(d/1000);
+  document.getElementById("days").textContent=Math.floor(s/86400).toLocaleString("pl-PL");
+  document.getElementById("hours").textContent=String(Math.floor(s%86400/3600)).padStart(2,"0");
+  document.getElementById("minutes").textContent=String(Math.floor(s%3600/60)).padStart(2,"0");
+  document.getElementById("seconds").textContent=String(s%60).padStart(2,"0");
+}
+updateCounter();
+setInterval(updateCounter,1000);
+
+const o=new IntersectionObserver(e=>e.forEach(x=>{
+  if(x.isIntersecting)x.target.classList.add("on")
+}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(x=>o.observe(x));
+
 document.addEventListener("DOMContentLoaded",()=>{
- const audio=document.getElementById("bgAudio");
- const files=[
-  "caly-ja.mp3",
-  "jeszcze-raz.mp3",
-  "nieskonczonosc.mp3",
-  "ten-stan.mp3",
-  "wrazenie.mp3"
- ];
+  const audio=document.getElementById("bgAudio");
+  const files=["caly-ja.mp3","jeszcze-raz.mp3","nieskonczonosc.mp3","ten-stan.mp3","wrazenie.mp3"];
+  let current=2;
 
- let current=2;
+  if(!audio)return;
 
- if(!audio)return;
+  function playTrack(i){
+    current=i;
+    audio.pause();
+    audio.src="audio/"+files[i]+"?v=7";
+    audio.load();
 
- function playTrack(i){
-  current=i;
-  audio.pause();
+    audio.addEventListener("loadedmetadata",function start(){
+      audio.removeEventListener("loadedmetadata",start);
 
-  audio.src="audio/"+files[i]+"?v=6";
-  audio.load();
+      if(i===2){
+        audio.currentTime=26;
+      }else{
+        audio.currentTime=0;
+      }
 
-  audio.addEventListener("loadedmetadata",function start(){
-   audio.removeEventListener("loadedmetadata",start);
+      audio.play().catch(()=>{});
+    });
+  }
 
-   if(i===2){
-    audio.currentTime=26;
-   }else{
-    audio.currentTime=0;
-   }
-
-   audio.play().catch(()=>{});
+  audio.addEventListener("ended",()=>{
+    current=(current+1)%files.length;
+    playTrack(current);
   });
- }
 
- audio.addEventListener("ended",()=>{
-  current=(current+1)%files.length;
+  window.playLocal=(i)=>{
+    playTrack(i);
+  };
+
   playTrack(current);
- });
-
- playTrack(current);
-
- window.playLocal=(i)=>{
-  playTrack(i);
- };
 });
